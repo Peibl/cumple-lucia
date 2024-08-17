@@ -252,14 +252,11 @@
                                     <h1 class="app-contrast-color websiteFont__headingHero mb20" data-color="">
                                         ¿Venís? </h1>
                                     <div class="websiteFont__hero websiteLinkChilds websiteLinkChilds--underline">
-                                        <p>Nos haría <i>muy </i>felices que nos acompañes en esta noche tan especial!
+                                        <p>Me haría <i>muy </i>feliz que me acompañes en esta noche tan especial!
                                         </p>
-                                        <p>Para confirmar tu asistencia, escribí tu nombre y seleccioná "Buscar". Una
-                                            vez que aparezca tu nombre, sólo tenés que decir si venís o no (ojalá que
-                                            sí!).</p>
-                                        <p>Si tenés alguna restricción alimenticia, por favor seleccioná debajo entre
-                                            las opciones para menú celíaco, vegano o vegetariano. En caso de que seas
-                                            alérgico/a, dejanos un mensaje aclarando a qué alimentos.</p></div>
+                                        <p>Para confirmar tu asistencia, escribí tu nombre y seleccioná "Enviar".
+                                        <p>Si tenés alguna restricción alimenticia, por favor comentalo en el mensaje. En caso de que seas
+                                            alérgico/a, dejan un mensaje aclarando a qué alimentos.</p></div>
                                 </div>
                             </div>
 
@@ -267,7 +264,8 @@
                             <hr class="hrSection"/>
 
 
-                            <form class="app-website-rsvp-search-form websiteContainerSection mt30 app-contrast-color"
+                            <form id="rsvp-form"
+                                  class="app-website-rsvp-search-form websiteContainerSection mt30 app-contrast-color"
                                   data-color="primary-bg">
                                 <input type="hidden" name="isJsArchitectureEnabled" value="true"/>
                                 <input type="hidden" name="toConfirm" value=""/>
@@ -277,7 +275,7 @@
                                         <div class="unit">
                                             <div class="websiteTextfield textfield">
                                                 <input class="app-website-rsvp-search-input textfield__input"
-                                                       type="text" maxlength="80" name="nombre"
+                                                       type="text" id="nombre" maxlength="80" name="nombre"
                                                        placeholder="Nombre" data-redesign="redesign"
                                                        value="">
                                             </div>
@@ -287,7 +285,7 @@
                                         <div class="unit">
                                             <div class="websiteTextfield textfield">
                                                 <input class="app-website-rsvp-search-input textfield__input"
-                                                       type="text" maxlength="80" name="apellidos"
+                                                       type="text" id="apellidos" maxlength="80" name="apellidos"
                                                        placeholder="Apellidos" data-redesign="redesign"
                                                        value="">
                                             </div>
@@ -298,11 +296,12 @@
                                      data-redesign="redesign" name="nameRequired"></div>
                                 <div class="text-center mb20">
                                     <button class="app-website-rsvp-search btnFlat btnFlat--primary app-contrast-color"
-                                            data-color="secondaryColorBtnFlat" type="submit">
-                                        Buscar
+                                            data-color="secondaryColorBtnFlat" type="submit" id="send-whatsapp">
+                                        Enviar por WhatsApp
                                     </button>
                                 </div>
                             </form>
+
 
                             <div class="app-website-rsvp-guests-error websiteBox websiteBox--sm text-center dnone"></div>
 
@@ -356,67 +355,29 @@
                     </div>
                 </div>
             </div>
-
-
             <script>
-                var pageGlobals = {
-                    common: {
-                        "environment": {
-                            "countryCode": "AR",
-                            "isJsArchitectureEnabled": true,
-                            "isCookieLessEnabled": false,
-                            "isInternationalOnePage": true,
-                            "subdomain": "www.chuychu.com",
-                            "subdomainCommunity": null,
-                            "isCurrentPageInCustomSubdomain": false,
-                            "isGoogleIdentityServicesLibraryEnabled": true,
-                            "isWebVitalsEnabled": false,
-                            "isDebugCoreWebVitalsEnabled": false,
-                            "isDevel": false,
-                            "showAppPusher": true
-                        },
-                        "platform": {
-                            "reducedPlatform": "",
-                            "isDesktop": true,
-                            "isMobile": false,
-                            "isApp": false,
-                            "mobilePlatform": "mobile",
-                            "apps": {
-                                "appVersion": null,
-                                "usersApp": {
-                                    "isCurrentPlatform": false,
-                                    "isAndroid": false,
-                                    "isIOS": false,
-                                    "proxy": {
-                                        "isProxyBarsEnabled": false,
-                                        "isShowNativeLoginEnabled": false,
-                                        "areHappyMomentsEnabled": true,
-                                        "isNativeShareAvailable": false,
-                                        "isListingCounterFiltersEnabled": false
-                                    }
-                                },
-                                "vendorsApp": {
-                                    "isCurrentPlatform": false,
-                                    "isAndroid": false,
-                                    "isIOS": false,
-                                    "proxy": {"isProxyBarsEnabled": false, "isIOSProxyBarsFullControlEnabled": false}
-                                },
-                                "isAppUsersNativeSignUpLayerEnabled": false
-                            }
-                        },
-                        "remarketing": {
-                            "facebook": {
-                                "isPixelEnabled": false,
-                                "isEnabled": true,
-                                "isLoaded": false,
-                                "tracker": "experiment"
-                            }, "pinterest": {"isEnabled": false, "isLoaded": false}
-                        },
-                        "analytics": {"isEcommerceEnabled": true, "code": "UA-27402449-1"}
-                    }
-                    , experiments: []
-                };
+                document.getElementById('rsvp-form').addEventListener('submit', function (event) {
+                    event.preventDefault(); // Evita el envío normal del formulario
+
+                    // Obtener los valores de los campos de nombre y apellidos
+                    var nombre = document.getElementById('nombre').value;
+                    var apellidos = document.getElementById('apellidos').value;
+
+                    // Crear el mensaje para enviar por WhatsApp
+                    var mensaje = "Hola, soy " + nombre + " " + apellidos + ". Confirmo mi asistencia.";
+
+                    // Reemplaza con el número de WhatsApp al que deseas enviar el mensaje
+                    var numeroWhatsApp = "5491161321949"; // Cambia por el número de teléfono con código de país
+
+                    // Construir la URL de WhatsApp
+                    var urlWhatsApp = "https://wa.me/" + numeroWhatsApp + "?text=" + encodeURIComponent(mensaje);
+
+                    // Redirigir a la URL de WhatsApp
+                    window.location.href = urlWhatsApp;
+                });
             </script>
+
+
 
             <script>
                 var userGlobals = {
@@ -548,200 +509,6 @@
                         variantId
                     })
                 }
-            </script>
-            <script>
-                !function () {
-
-                    const ga4ClientIdPromise = new Promise(resolve => {
-                        gtag('get', 'G-7FGH64FFRS', 'client_id', resolve)
-                    });
-                    const ga4SessionIdPromise = new Promise(resolve => {
-                        gtag('get', 'G-7FGH64FFRS', 'session_id', resolve)
-                    });
-                    const ga4SessionNumberPromise = new Promise(resolve => {
-                        gtag('get', 'G-7FGH64FFRS', 'session_number', resolve)
-                    });
-
-                    var segmentLoaded = false;
-                    !function () {
-                        var analytics = window.analytics = window.analytics || [];
-                        if (!analytics.initialize) if (analytics.invoked) window.console && console.error && console.error("Segment snippet included twice."); else {
-                            analytics.invoked = !0;
-                            analytics.methods = ["trackSubmit", "trackClick", "trackLink", "trackForm", "pageview", "identify", "reset", "group", "track", "ready", "alias", "debug", "page", "once", "off", "on", "addSourceMiddleware", "addIntegrationMiddleware", "setAnonymousId", "addDestinationMiddleware"];
-                            analytics.factory = function (e) {
-                                return function () {
-                                    var t = Array.prototype.slice.call(arguments);
-                                    t.unshift(e);
-                                    analytics.push(t);
-                                    return analytics
-                                }
-                            };
-                            for (var e = 0; e < analytics.methods.length; e++) {
-                                var key = analytics.methods[e];
-                                analytics[key] = analytics.factory(key)
-                            }
-                            analytics.load = function (key, e) {
-                                var t = document.createElement("script");
-                                t.type = "text/javascript";
-                                t.async = !0;
-                                t.src = "https://cdn.segment.com/analytics.js/v1/" + key + "/analytics.min.js";
-                                var n = document.getElementsByTagName("script")[0];
-                                n.parentNode.insertBefore(t, n);
-                                analytics._loadOptions = e
-                            };
-                            analytics._writeKey = "FYGnwIUoZo506ElXgzvisYIBS7sIBdZF";
-                            ;analytics.SNIPPET_VERSION = "4.15.3";
-                        }
-                    }();
-
-
-                    var segmentScript = function () {
-                        if (segmentLoaded) {
-                            return;
-                        }
-                        if (window.analytics && window.analytics.initialized === true) {
-                            return;
-                        }
-
-                        segmentLoaded = true;
-                        (async () => {
-                            const [ga4ClientId, ga4SessionId, ga4SessionNumber] = await Promise.all([ga4ClientIdPromise, ga4SessionIdPromise, ga4SessionNumberPromise]);
-                            const pageProperties = {
-                                "uid": "(not set)",
-                                "reduced": "\/website\/public\/rsvp",
-                                "gpAnonId": "5c738934-4df7-45c1-9bef-e6df06e2965a",
-                                "isMasquerading": false,
-                                "platform": "desktop web",
-                                "section": "\/website\/public\/rsvp",
-                                "build_product": "guest-services"
-                            };
-                            const analyticsGroupOpt = isCookieGroupAllowed(CONSENT_ANALYTICS_GROUP) === true;
-                            const targetedAdsOpt = isCookieGroupAllowed(CONSENT_TARGETED_ADVERTISING_GROUP) === true;
-                            const socialMediaOpt = isCookieGroupAllowed(CONSENT_SOCIAL_MEDIA_GROUP) === true;
-                            const saleOfDataOpt = analyticsGroupOpt && targetedAdsOpt && socialMediaOpt
-
-                            // Adding Segment middleware
-                            analytics.addSourceMiddleware(function (middlewareIntermediate) {
-                                var payload = middlewareIntermediate.payload,
-                                    next = middlewareIntermediate.next,
-                                    namespace;
-                                if (payload.obj.type === 'identify') {
-                                    namespace = 'traits'
-                                } else {
-                                    namespace = 'properties'
-                                }
-                                if (!payload.obj[namespace]) {
-                                    console.warn('[ga4 segment patch] Analytics event does not contain namespace property: ' + namespace);
-                                    next(payload);
-                                    return
-                                }
-                                payload.obj[namespace].ga_session_id = ga4SessionId;
-                                payload.obj[namespace].ga_session_number = ga4SessionNumber;
-                                payload.obj[namespace].ga_client_id = ga4ClientId;
-                                payload.obj[namespace].ga4_session_id = ga4SessionId;
-                                payload.obj[namespace].ga4_session_number = ga4SessionNumber;
-                                payload.obj[namespace].ga4_client_id = ga4ClientId;
-
-                                payload.obj.context.data_processing_options = !targetedAdsOpt;
-
-                                if (payload.obj.type === 'page') {
-                                    payload.obj[namespace]['event_id'] = 'pageview_' + window.userGlobals.gp_anon_id + '_' + '2c47eaa6-1dd8-4b3e-aa5f-9543b5134379'
-                                }
-
-                                if (!payload.obj[namespace].loggedUserUUID && window.userGlobals?.user_uuid) {
-                                    payload.obj[namespace].loggedUserUUID = window.userGlobals.user_uuid
-                                }
-
-                                const tkwwOpCookie = typeof getCookie === 'function' ? getCookie('tkww_op') : null;
-                                if (!payload.obj.context.tkww_op && tkwwOpCookie) {
-                                    payload.obj.context.tkww_op = tkwwOpCookie;
-                                }
-
-                                const globalExtraPropertiesForSegmentTracking = typeof window.globalExtraPropertiesForSegmentTracking === 'object'
-                                    ? window.globalExtraPropertiesForSegmentTracking : {};
-                                for (const key in globalExtraPropertiesForSegmentTracking) {
-                                    if (globalExtraPropertiesForSegmentTracking.hasOwnProperty(key) && !payload.obj[namespace][key]) {
-                                        payload.obj[namespace][key] = globalExtraPropertiesForSegmentTracking[key];
-                                    }
-                                }
-
-                                let globalPageProperties = [];
-                                let globalPagePropertiesExcludedEventNames = {};
-                                try {
-                                    globalPageProperties = JSON.parse('["appVersion","frmInsert","gpAnonId","loggedUserUUID","loggedVendorUUID","platform","reduced","section","build_product"]');
-                                    globalPagePropertiesExcludedEventNames = JSON.parse('[]');
-                                } catch (e) {
-                                    console.error(`Segment init error: ${e.message}`);
-                                }
-
-                                for (const key in globalPageProperties) {
-                                    const field = globalPageProperties[key];
-                                    const isExcluded = globalPagePropertiesExcludedEventNames[field]?.includes(payload.obj.event) ?? false;
-                                    if (!payload.obj[namespace][field] && pageProperties[field] && !isExcluded) {
-                                        payload.obj[namespace][field] = pageProperties[field];
-                                    }
-                                }
-
-                                payload.obj['context']['traits'] = payload.obj['context']['traits'] || {};
-                                for (const [key, value] of Object.entries(window.contextTraits)) {
-                                    payload.obj['context']['traits'][key] = value;
-                                }
-
-
-                                if (!payload.obj['userId']) {
-                                    payload.obj['userId'] = payload.obj[namespace]['loggedUserUUID']
-                                }
-
-                                if (payload.obj.type !== 'identify') {
-                                    payload.obj[namespace]['non_interaction'] = !!parseInt(payload.obj[namespace]['nonInteraction'])
-                                }
-
-
-                                // override context variables if exists in window.trackingContext is defined and updated
-                                if (typeof window.trackingContext === 'object') {
-                                    const overrideObjectProperties = (object, newObjectValues) => {
-                                        for (const [key, value] of Object.entries(newObjectValues)) {
-                                            if (typeof value === 'object' && typeof object[key] === 'object') {
-                                                overrideObjectProperties(object[key], value);
-                                            } else {
-                                                object[key] = value;
-                                            }
-                                        }
-                                        return object;
-                                    };
-
-                                    payload.obj = overrideObjectProperties(payload.obj, window.trackingContext);
-                                }
-
-                                next(payload);
-                            });
-
-                            var integrationsConfig = {
-                                All: analyticsGroupOpt,
-                                'Segment.io': true,
-                                'Google Analytics 4': analyticsGroupOpt,
-                                'Facebook Conversions API (Actions)': targetedAdsOpt
-                            };
-                            window.analytics.load("FYGnwIUoZo506ElXgzvisYIBS7sIBdZF", {integrations: integrationsConfig});
-                            window.analytics.page(null, pageProperties);
-
-                            const experiments = (window.pageGlobals && window.pageGlobals.experiments) ? window.pageGlobals.experiments : {};
-                            Object.keys(experiments).forEach(exp => {
-                                trackExperimentViewed(
-                                    experiments[exp].experimentId,
-                                    window.userGlobals ? window.userGlobals[experiments[exp].bucketingType] : null,
-                                    experiments[exp].variantId
-                                )
-                            })
-                        })();
-                    };
-                    document.getElementsByTagName('body')[0].addEventListener('analyticsCookiesHasBeenAccepted', function () {
-                        segmentScript();
-                    });
-                    if (isCookieGroupAllowed(CONSENT_ANALYTICS_GROUP) === true) {
-                        segmentScript();
-                    }
-                }();
             </script>
 
 
