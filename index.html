@@ -234,6 +234,7 @@
                             <span style='text-transform:lowercase'>14</span> Septiembre 2024</p>
                         <p class="websiteHomeContentHeader__place">
                             12:30 hs. | puntual </p>
+                        <p class="websiteHomeContentHeader__place" id="countdown"></p>
                     </div>
                 </div>
 
@@ -799,6 +800,29 @@
         }
     }
 </script>
+<script>
+    function updateCountdown() {
+        const countdownElement = document.getElementById('countdown');
+        const eventDate = new Date('2024-09-14T12:30:00'); // Fecha y hora del evento
+        const now = new Date();
+        const diff = eventDate - now;
+
+        if (diff <= 0) {
+            countdownElement.innerHTML = "¡El evento ha comenzado!";
+            clearInterval(intervalId); // Detiene el intervalo una vez que la fecha ha pasado
+        } else {
+            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+            const minutes = Math.floor((diff / 1000 / 60) % 60);
+            const seconds = Math.floor((diff / 1000) % 60);
+
+            countdownElement.innerHTML = `Faltan ${days} días, ${hours} horas, ${minutes} minutos, ${seconds} segundos.`;
+        }
+    }
+
+    const intervalId = setInterval(updateCountdown, 1000); // Actualiza el contador cada segundo
+</script>
+
 <script>
 
     document.addEventListener('DOMContentLoaded', function () {
