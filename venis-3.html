@@ -139,16 +139,9 @@
 
 
                 <style id="app-template-style">
-                    @media screen and (min-width: 48em) {
-                        .websiteDecoration--top {
-                            background-image: url(https://img.freepik.com/vector-gratis/fondo-nieve-realista_23-2148421507.jpg?t=st=1723995146~exp=1723998746~hmac=1a66e0254e6e28f8234e44e1ff3e68fd0723015c9880c0f56e5a0ad9c0ff754f&w=2000);
-                        }
-                    }
-
-                    @media screen and (max-width: 48em) {
-                        .websiteDecoration--top {
-                            background-image: url(https://img.freepik.com/vector-gratis/fondo-nieve-realista_23-2148421507.jpg?t=st=1723995146~exp=1723998746~hmac=1a66e0254e6e28f8234e44e1ff3e68fd0723015c9880c0f56e5a0ad9c0ff754f&w=2000);
-                        }
+                    .websiteDecoration {
+                        /*background-image: url(https://img.freepik.com/vector-gratis/fondo-nieve-realista_23-2148421507.jpg?t=st=1723995146~exp=1723998746~hmac=1a66e0254e6e28f8234e44e1ff3e68fd0723015c9880c0f56e5a0ad9c0ff754f&w=2000);*/
+                        /*background-color: gray;*/
                     }
                 </style>
 
@@ -217,6 +210,8 @@
                 <style id="app-template-style">
                     .websiteDecoration--internal {
                         background-image: url(https://img.freepik.com/vector-gratis/fondo-nieve-realista_23-2148421507.jpg?t=st=1723995146~exp=1723998746~hmac=1a66e0254e6e28f8234e44e1ff3e68fd0723015c9880c0f56e5a0ad9c0ff754f&w=2000);
+                        /*background-position: 50% 20%; !* Coloca la imagen en la parte superior centrada *!*/
+                        background-size: cover;/*background-color: yellow;*/
                     }
                 </style>
                 <div class="websiteDecoration websiteDecoration--internal"></div>
@@ -308,7 +303,8 @@
 
                 <style id="app-template-style">
                     .websiteDecoration--bottom {
-                        background-image: url(https://img.freepik.com/vector-gratis/fondo-nieve-realista_23-2148421507.jpg?t=st=1723995146~exp=1723998746~hmac=1a66e0254e6e28f8234e44e1ff3e68fd0723015c9880c0f56e5a0ad9c0ff754f&w=2000);
+                        /*background-image: url(https://img.freepik.com/vector-gratis/fondo-nieve-realista_23-2148421507.jpg?t=st=1723995146~exp=1723998746~hmac=1a66e0254e6e28f8234e44e1ff3e68fd0723015c9880c0f56e5a0ad9c0ff754f&w=2000);*/
+                        background-color: red;
                     }
                 </style>
                 <div class="websiteDecoration websiteDecoration--bottom"></div>
@@ -335,6 +331,66 @@
                     </div>
                 </div>
             </div>
+
+            <script>
+                var pageGlobals = {
+                    common: {
+                        "environment": {
+                            "countryCode": "AR",
+                            "isJsArchitectureEnabled": true,
+                            "isCookieLessEnabled": false,
+                            "isInternationalOnePage": true,
+                            "subdomain": "www.chuychu.com",
+                            "subdomainCommunity": null,
+                            "isCurrentPageInCustomSubdomain": false,
+                            "isGoogleIdentityServicesLibraryEnabled": true,
+                            "isWebVitalsEnabled": false,
+                            "isDebugCoreWebVitalsEnabled": false,
+                            "isDevel": false,
+                            "showAppPusher": true
+                        },
+                        "platform": {
+                            "reducedPlatform": "",
+                            "isDesktop": true,
+                            "isMobile": false,
+                            "isApp": false,
+                            "mobilePlatform": "mobile",
+                            "apps": {
+                                "appVersion": null,
+                                "usersApp": {
+                                    "isCurrentPlatform": false,
+                                    "isAndroid": false,
+                                    "isIOS": false,
+                                    "proxy": {
+                                        "isProxyBarsEnabled": false,
+                                        "isShowNativeLoginEnabled": false,
+                                        "areHappyMomentsEnabled": true,
+                                        "isNativeShareAvailable": false,
+                                        "isListingCounterFiltersEnabled": false
+                                    }
+                                },
+                                "vendorsApp": {
+                                    "isCurrentPlatform": false,
+                                    "isAndroid": false,
+                                    "isIOS": false,
+                                    "proxy": {"isProxyBarsEnabled": false, "isIOSProxyBarsFullControlEnabled": false}
+                                },
+                                "isAppUsersNativeSignUpLayerEnabled": false
+                            }
+                        },
+                        "remarketing": {
+                            "facebook": {
+                                "isPixelEnabled": false,
+                                "isEnabled": true,
+                                "isLoaded": false,
+                                "tracker": "experiment"
+                            }, "pinterest": {"isEnabled": false, "isLoaded": false}
+                        },
+                        "analytics": {"isEcommerceEnabled": true, "code": "UA-27402449-1"}
+                    }
+                    , experiments: []
+                };
+            </script>
             <script>
                 document.getElementById('rsvp-form').addEventListener('submit', function (event) {
                     event.preventDefault(); // Evita el envío normal del formulario
